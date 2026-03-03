@@ -4,54 +4,55 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>自然人 / 个体户常见业务操作手册 · 电子税务局</title>
+
+  <!-- 引用共享样式表（变量、body、page 容器等均由此提供） -->
+  <link rel="stylesheet" href="assets/style.css" />
+
   <style>
-    :root {
-      --primary-dark:  #7d3c00;
-      --primary-light: #e67e22;
-      --gradient:      linear-gradient(135deg, #7d3c00 0%, #e67e22 100%);
-      --bg-body:       #fdf6f0;
-      --bg-info:       #fef5ec;
-      --border:        #f5cba7;
-      --text-title:    #7d3c00;
-      --text-muted:    #8b6f5c;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "微软雅黑", "Microsoft YaHei", sans-serif;
-      background: var(--bg-body);
-      color: #2d3748;
-      padding: 40px 20px;
-    }
-    .page { max-width: 900px; margin: 0 auto; }
-
-    /* 封面 */
+    /* ── 目录页专属：封面 ── */
     .cover {
       background: var(--gradient);
       border-radius: 14px;
       padding: 48px;
       color: #fff;
       margin-bottom: 32px;
-      box-shadow: 0 4px 24px rgba(125, 60, 0, 0.18);
+      box-shadow: var(--shadow-md);
     }
-    .cover h1 { font-size: 34px; font-weight: 700; letter-spacing: 3px; margin-bottom: 12px; }
-    .cover p  { font-size: 14px; opacity: 0.88; line-height: 1.9; }
-    .cover-meta { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .cover h1 {
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+    .cover p {
+      font-size: 14px;
+      opacity: 0.88;
+      line-height: 1.9;
+    }
+    .cover-meta {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
     .cover-badge {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.30);
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.30);
       border-radius: 6px;
       padding: 4px 14px;
       font-size: 12px;
       color: #fff;
     }
 
-    /* 图例 */
+    /* ── 目录页专属：图例 ── */
     .legend {
-      display: flex; gap: 18px; flex-wrap: wrap;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
       margin-bottom: 24px;
-      font-size: 13px; color: #4a5568;
-      background: #fff;
+      font-size: 13px;
+      color: var(--text-secondary);
+      background: var(--bg-page);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 12px 20px;
@@ -62,29 +63,33 @@
     .dot-wip  { background: #f39c12; }
     .dot-todo { background: #bdc3c7; }
 
-    /* 章节 */
+    /* ── 目录页专属：章节标题 ── */
     .chapter { margin-bottom: 28px; }
     .chapter-title {
-      font-size: 15px; font-weight: 700; color: var(--text-title);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-title);
       padding: 8px 0 8px 14px;
       border-left: 4px solid var(--primary-light);
       margin-bottom: 12px;
-      display: flex; align-items: center; gap: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* 卡片网格 */
+    /* ── 目录页专属：卡片网格 ── */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
       gap: 12px;
     }
     .card {
-      background: #fff;
+      background: var(--bg-page);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 14px 16px;
       text-decoration: none;
-      color: #2d3748;
+      color: var(--text-main);
       display: flex;
       align-items: flex-start;
       gap: 12px;
@@ -92,7 +97,7 @@
       cursor: pointer;
     }
     .card:hover {
-      box-shadow: 0 4px 16px rgba(230, 126, 34, 0.18);
+      box-shadow: var(--shadow-md);
       border-color: var(--primary-light);
       transform: translateY(-2px);
     }
@@ -106,20 +111,19 @@
     }
     .card-icon  { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
     .card-title { font-size: 13px; font-weight: 600; color: var(--text-title); line-height: 1.5; }
-    .card-status { font-size: 11px; margin-top: 4px; color: #718096; }
+    .card-status { font-size: 11px; margin-top: 4px; color: var(--text-muted); }
     .card.done .card-status { color: #27ae60; }
     .card.wip  .card-status { color: #f39c12; }
 
-    /* 页脚 */
-    .footer {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 32px;
-      padding: 20px;
-      border-top: 1px solid var(--border);
+    /* ── 目录页：page 容器覆盖（目录页不需要白色卡片容器） ── */
+    .page {
+      max-width: 900px;
+      background: transparent;   /* ← 覆盖 style.css 中的 #ffffff */
+      box-shadow: none;           /* ← 覆盖 style.css 中的阴影 */
+      border-radius: 0;           /* ← 覆盖 style.css 中的圆角 */
+      overflow: visible;          /* ← 覆盖 style.css 中的 overflow:hidden */
     }
-    .footer strong { color: var(--primary-light); }
+
   </style>
 </head>
 <body>
@@ -154,7 +158,7 @@
       <a href="preface/login.html" class="card done">
         <div class="card-icon">🔐</div>
         <div>
-          <div class="card-title">如何登录电子税务局 / 自然人电子税务局</div>
+          <div class="card-title">如何登录电子税务局 / 自然人电子税务局 / 扣缴端</div>
           <div class="card-status">✅ 已完成</div>
         </div>
       </a>
@@ -177,9 +181,9 @@
         <div class="card-icon">🧾</div>
         <div><div class="card-title">1.3 票种核定申请</div><div class="card-status">⏳ 待完成</div></div>
       </a>
-      <a href="ch1-registration/1.4-bank-account.html" class="card done">
+      <a href="ch1-registration/1.4-bank-account.html" class="card wip">
         <div class="card-icon">🏦</div>
-        <div><div class="card-title">1.4 存款账户报告 / 三方协议签订和变更</div><div class="card-status">✅ 已完成</div></div>
+        <div><div class="card-title">1.4 存款账户报告 / 三方协议签订和变更</div><div class="card-status">⏳ 编写中</div></div>
       </a>
       <a href="ch1-registration/1.5-info-change.html" class="card todo">
         <div class="card-icon">✏️</div>
@@ -283,6 +287,7 @@
     </div>
   </div>
 
+  <!-- 页脚 -->
   <div class="footer">
     如操作过程中遇到问题，请拨打纳税服务热线 <strong>12366</strong> 获取帮助
   </div>

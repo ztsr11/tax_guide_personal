@@ -5,52 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>自然人代开增值税发票 · 操作指引</title>
 
-  <!-- 引用共享样式表 -->
   <link rel="stylesheet" href="../assets/style.css" />
 
   <style>
     /* ── 本页专属：业务类型标签 ── */
     .type-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
     .type-tab {
-      background: #fef5ec;
-      border: 1px solid #f5cba7;
+      background: var(--bg-info);
+      border: 1px solid var(--border);
       border-radius: 6px;
       padding: 5px 14px;
-      font-size: 13px; color: #7d3c00; font-weight: 600;
+      font-size: 13px;
+      color: var(--text-title);
+      font-weight: 600;
       cursor: default;
     }
     .type-tab.active {
-      background: #c0601a;
-      color: #fff; border-color: transparent;
+      background: var(--gradient);
+      color: #fff;
+      border-color: transparent;
     }
 
     /* ── 本页专属：子步骤序号圆圈 ── */
     .sub-num {
       width: 30px; height: 30px;
-      background: #e8894a;
-      border-radius: 50%; color: #fff;
+      background: var(--gradient);
+      border-radius: 50%;
+      color: #fff;
       font-size: 15px; font-weight: 700;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; margin-top: 2px;
-      box-shadow: 0 1px 4px rgba(192,96,26,0.22);
+      box-shadow: var(--shadow-sm);
     }
 
     /* ── 本页专属：提交结果状态卡片 ── */
     .result-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
     .result-item {
       display: flex; gap: 10px; align-items: flex-start;
-      background: #fff8f2;
-      border: 1px solid #fae3c8;
-      border-left: 4px solid #c0601a;
+      background: var(--bg-path);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary-light);
       border-radius: 0 8px 8px 0;
       padding: 10px 14px;
-      font-size: 13px; color: #5a3010; line-height: 1.8;
+      font-size: 13px;
+      color: var(--text-title);
+      line-height: 1.8;
     }
     .result-tag {
-      background: #c0601a;
-      color: #fff; border-radius: 4px;
-      padding: 1px 8px; font-size: 11px;
-      flex-shrink: 0; margin-top: 2px; white-space: nowrap;
+      background: var(--gradient);
+      color: #fff;
+      border-radius: 4px;
+      padding: 1px 8px;
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      white-space: nowrap;
     }
 
     /* ── 本页专属：资料表格 ── */
@@ -60,37 +69,40 @@
       font-size: 13px;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 1px 6px rgba(125,60,0,0.08);
+      box-shadow: var(--shadow-sm);
       margin-top: 4px;
     }
     .doc-table th {
-      background: #c0601a;
-      color: #fff; padding: 10px 12px;
-      text-align: left; font-weight: 600;
+      background: var(--primary-dark);
+      color: #fff;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
     }
     .doc-table td {
       padding: 9px 12px;
-      border-bottom: 1px solid #fae3c8;
-      background: #fdf8f4; color: #2d3748;
+      border-bottom: 1px solid var(--border-light);
+      background: var(--bg-step);
+      color: var(--text-main);
       line-height: 1.6;
     }
     .doc-table td code {
-      background: #fde8d0;
-      color: #7d3c00;
+      background: var(--border-light);
+      color: var(--text-title);
       border-radius: 3px;
       padding: 1px 6px;
       font-size: 12px;
       font-family: "Courier New", monospace;
     }
     .doc-table tr:last-child td { border-bottom: none; }
-    .doc-table tr:nth-child(even) td { background: #fef5ec; }
-    .doc-table .check { color: #c0601a; font-weight: 700; text-align: center; }
+    .doc-table tr:nth-child(even) td { background: var(--bg-info); }
+    .doc-table .check { color: var(--primary-light); font-weight: 700; text-align: center; }
 
     /* ── 本页专属：子步骤内卡片背景覆盖 ── */
     .sub-step .steps { gap: 10px; }
     .sub-step .step-card {
-      background: #ffffff;
-      border-color: #fae3c8;
+      background: var(--bg-page);
+      border-color: var(--border-light);
       padding: 12px 16px;
     }
 
@@ -101,9 +113,20 @@
       border-left: 4px solid #f0a500;
       border-radius: 0 8px 8px 0;
       padding: 12px 16px;
-      font-size: 13px; color: #7d5a00;
+      font-size: 13px;
+      color: #7d5a00;
       line-height: 1.8;
       margin-top: 10px;
+    }
+
+    /* ── 本页专属：code 标签 ── */
+    .sub-step code {
+      background: var(--border-light);
+      color: var(--text-title);
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-size: 12px;
+      font-family: "Courier New", monospace;
     }
   </style>
 </head>
@@ -140,7 +163,6 @@
       ⚠️ &nbsp;已在核心征管系统中核定数电专票票种的小规模纳税人，<strong>不可</strong>申请代开相应票种
     </div>
 
-    <!-- 温馨提示 -->
     <div class="notice-box">
       💛 <strong>温馨提示：</strong>根据目前文件规定，自然人仅在发生<strong>不动产租赁、销售</strong>的业务时方可代开增值税专用发票！
     </div>
@@ -213,10 +235,9 @@
                     <img src="images/2.5/2.5-03-invoice-form.png" />
                   </div>
 
-                  <!-- ── 项目名称说明插入块 ── -->
                   <div class="sub-step" style="margin-top:10px;">
                     <div class="sub-step-title">📌 如何确定「项目名称」？</div>
-                    <div class="step-text">项目名称须<strong>准确反映交易内容</strong>，并与税收分类编码匹配。格式为：<strong>*税收分类简称*具体名称</strong>，例如：<code style="background:#fde8d0;color:#7d3c00;border-radius:3px;padding:1px 6px;font-size:12px;font-family:'Courier New',monospace;">*设计服务*LOGO设计</code>、<code style="background:#fde8d0;color:#7d3c00;border-radius:3px;padding:1px 6px;font-size:12px;font-family:'Courier New',monospace;">*软件开发服务*软件开发</code></div>
+                    <div class="step-text">项目名称须<strong>准确反映交易内容</strong>，并与税收分类编码匹配。格式为：<strong>*税收分类简称*具体名称</strong>，例如：<code>*设计服务*LOGO设计</code>、<code>*软件开发服务*软件开发</code></div>
 
                     <div class="tip-box" style="margin-top:8px;">
                       💡 <strong>推荐方式：系统智能赋码</strong><br>
@@ -228,7 +249,7 @@
                       可参照与购买方签订的合同或协议中对服务/货物的描述，提炼核心内容后填写，避免使用「服务费」「劳务费」等笼统表述。
                     </div>
 
-                    <div style="margin-top:10px; font-size:13px; color:#7d3c00; font-weight:700;">常见业务参考：</div>
+                    <div style="margin-top:10px; font-size:13px; color:var(--text-title); font-weight:700;">常见业务参考：</div>
                     <table class="doc-table" style="margin-top:6px;">
                       <thead>
                         <tr>
@@ -251,7 +272,6 @@
                       <span>项目名称必须与实际业务一致，不得填写与交易内容不符的名称；如填写不确定，可拨打 <strong>12366</strong> 咨询或直接向购买方财务确认其报销要求。</span>
                     </div>
                   </div>
-                  <!-- ── /项目名称说明插入块 ── -->
 
                 </div>
               </div>
@@ -441,7 +461,6 @@
 
         </div>
       </div>
-
 
     </div><!-- /steps -->
 

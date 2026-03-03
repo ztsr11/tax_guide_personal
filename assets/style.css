@@ -1,27 +1,27 @@
 /* ============================================
    自然人 / 个体户操作手册 · 统一样式表
-   适用于所有章节 HTML 页面
-   主题色：暖橙系 #7d3c00 / #e67e22
+   主题色：天蓝系（自然和谐版）
+   主色：#2176c7 / #4a90d9
    ============================================ */
 
 /* ---------- CSS 变量 ---------- */
 :root {
-  --primary-dark:   #7d3c00;
-  --primary-light:  #e67e22;
-  --gradient:       linear-gradient(135deg, #7d3c00 0%, #e67e22 100%);
-  --bg-body:        #fdf6f0;
+  --primary-dark:   #2176c7;
+  --primary-light:  #4a90d9;
+  --gradient:       linear-gradient(135deg, #4a90d9 0%, #2176c7 100%);
+  --bg-body:        #f0f6fb;
   --bg-page:        #ffffff;
-  --bg-info:        #fef5ec;
-  --bg-step:        #fdf8f4;
-  --bg-path:        #fef9f5;
-  --border:         #f5cba7;
-  --border-light:   #fae3c8;
-  --text-main:      #2d3748;
-  --text-title:     #7d3c00;
-  --text-secondary: #8b6f5c;
-  --text-muted:     #a08060;
-  --shadow-sm:      0 1px 6px rgba(125, 60, 0, 0.08);
-  --shadow-md:      0 4px 24px rgba(125, 60, 0, 0.10);
+  --bg-info:        #e8f3fb;
+  --bg-step:        #f4f9fd;
+  --bg-path:        #edf5fb;
+  --border:         #a8cfe8;
+  --border-light:   #c8e2f2;
+  --text-main:      #2c3e50;
+  --text-title:     #1a4a7a;
+  --text-secondary: #3d6080;
+  --text-muted:     #7aaac8;
+  --shadow-sm:      0 1px 6px rgba(33, 118, 199, 0.08);
+  --shadow-md:      0 4px 24px rgba(33, 118, 199, 0.13);
 }
 
 /* ---------- 基础重置 ---------- */
@@ -47,7 +47,7 @@ body {
 
 /* ---------- 页头 ---------- */
 .header {
-  background: var(--gradient);
+  background: var(--primary-dark);
   padding: 40px 48px 32px;
   color: #fff;
 }
@@ -131,10 +131,11 @@ body {
   border-bottom: 2px solid var(--border);
 }
 
+/* ✅ 关键修复：图标色块统一为天蓝渐变，消除橙色残留 */
 .section-title .icon {
   width: 28px;
   height: 28px;
-  background: var(--gradient);
+  background: var(--primary-dark);
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -184,7 +185,7 @@ body {
 }
 
 .path-box .node {
-  background: var(--gradient);
+  background: var(--primary-dark);
   color: #fff;
   border-radius: 5px;
   padding: 2px 10px;
@@ -202,7 +203,7 @@ body {
 }
 
 .period-table th {
-  background: var(--gradient);
+  background: var(--primary-dark);
   color: #fff;
   padding: 10px 16px;
   text-align: left;
@@ -213,13 +214,13 @@ body {
   padding: 10px 16px;
   border-bottom: 1px solid var(--border-light);
   color: var(--text-main);
-  background: #fdf8f4;
+  background: #f4f9fd;
 }
 
 .period-table tr:last-child td { border-bottom: none; }
 .period-table tr:nth-child(even) td { background: var(--bg-info); }
 
-.highlight { color: var(--primary-light); font-weight: 700; }
+.highlight { color: var(--primary-dark); font-weight: 700; }
 
 /* ---------- 公式框 ---------- */
 .formula-box {
@@ -262,7 +263,7 @@ body {
 }
 
 .tier-table th {
-  background: var(--gradient);
+  background: var(--primary-dark);
   color: #fff;
   padding: 10px 16px;
   text-align: left;
@@ -272,7 +273,7 @@ body {
 .tier-table td {
   padding: 10px 16px;
   border-bottom: 1px solid var(--border-light);
-  background: #fdf8f4;
+  background: #f4f9fd;
   color: var(--text-main);
   line-height: 1.8;
 }
@@ -295,13 +296,13 @@ body {
 }
 
 .step-card:hover {
-  box-shadow: 0 4px 16px rgba(230, 126, 34, 0.12);
+  box-shadow: 0 4px 16px rgba(33, 118, 199, 0.16);
 }
 
 .step-num {
   width: 34px;
   height: 34px;
-  background: var(--gradient);
+  background: var(--primary-dark);
   border-radius: 50%;
   color: #fff;
   font-size: 15px;
@@ -311,7 +312,7 @@ body {
   justify-content: center;
   flex-shrink: 0;
   margin-top: 2px;
-  box-shadow: 0 2px 6px rgba(230, 126, 34, 0.30);
+  box-shadow: 0 2px 6px rgba(33, 118, 199, 0.32);
 }
 
 .step-content { flex: 1; min-width: 0; }
@@ -327,8 +328,8 @@ body {
 
 /* ---------- 截图占位框 ---------- */
 .step-screenshot {
-  background: #fef0e0;
-  border: 1.5px dashed #e6a96a;
+  background: #e8f3fb;
+  border: 1.5px dashed #7ab8da;
   border-radius: 6px;
   padding: 10px 14px;
   font-size: 12px;
@@ -353,7 +354,7 @@ body {
   border-radius: 8px;
   margin-top: 10px;
   margin-bottom: 4px;
-  box-shadow: 0 2px 8px rgba(125, 60, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(33, 118, 199, 0.08);
 }
 
 /* ---------- 子步骤块 ---------- */
@@ -398,7 +399,7 @@ body {
 .promise-char {
   width: 44px;
   height: 44px;
-  background: var(--gradient);
+  background: var(--primary-dark);
   border-radius: 8px;
   color: #fff;
   font-size: 20px;
@@ -406,7 +407,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(230, 126, 34, 0.30);
+  box-shadow: 0 2px 6px rgba(33, 118, 199, 0.32);
 }
 
 .promise-arrow {
@@ -423,13 +424,13 @@ body {
 .warn-item {
   display: flex;
   gap: 12px;
-  background: #fff8f0;
-  border: 1px solid #f5cba7;
-  border-left: 4px solid #e67e22;
+  background: #e4f0fa;
+  border: 1px solid #a8cfe8;
+  border-left: 4px solid #2176c7;
   border-radius: 0 8px 8px 0;
   padding: 12px 16px;
   font-size: 14px;
-  color: #6e3a0f;
+  color: #1a4a7a;
   line-height: 1.8;
 }
 
@@ -457,7 +458,7 @@ body {
 }
 
 .q-tag {
-  background: var(--gradient);
+  background: var(--primary-dark);
   color: #fff;
   border-radius: 4px;
   padding: 1px 8px;
@@ -499,25 +500,101 @@ body {
   color: var(--text-secondary);
 }
 
-.footer strong { color: var(--primary-light); }
+.footer strong { color: var(--primary-dark); }
 
 .btn-footer-back {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--gradient);
+  background: var(--primary-dark);
   color: #fff;
   text-decoration: none;
   font-size: 13px;
   padding: 7px 20px;
   border-radius: 20px;
   margin-top: 12px;
-  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.30);
+  box-shadow: 0 4px 12px rgba(33, 118, 199, 0.32);
   transition: opacity 0.2s, transform 0.2s;
 }
 .btn-footer-back:hover {
   opacity: 0.9;
   transform: translateY(-1px);
+}
+
+/* ---------- 场景标签 ---------- */
+.scene-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a4a7a;
+  background: #e8f3fb;
+  border-left: 4px solid #2176c7;
+  border-radius: 0 8px 8px 0;
+  padding: 8px 16px;
+  margin: 20px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- 特殊情形说明框 ---------- */
+.special-box {
+  background: #e8f3fb;
+  border: 1px solid #a8cfe8;
+  border-left: 4px solid #2176c7;
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: #1a4a7a;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+.sp-title {
+  font-weight: 700;
+  color: #1a4a7a;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* ---------- 成功提示框 ---------- */
+.success-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-left: 4px solid #22c55e;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #14532d;
+  line-height: 1.9;
+  margin-top: 10px;
+}
+
+/* ---------- 分隔线 ---------- */
+.divider {
+  border: none;
+  border-top: 1.5px dashed #a8cfe8;
+  margin: 24px 0;
+}
+
+/* ---------- step-num 文字标签版 ---------- */
+.step-num-label {
+  min-width: 44px;
+  height: auto;
+  background: var(--primary-dark);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  padding: 4px 6px;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(33, 118, 199, 0.32);
+  white-space: nowrap;
 }
 
 /* ---------- 打印优化 ---------- */

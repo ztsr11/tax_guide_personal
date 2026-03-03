@@ -8,79 +8,27 @@
 
   <style>
     /* ── 场景标签（新增 / 变更 / 注销 / 签协议） ── */
-    .scene-label {
-      font-size: 15px;
-      font-weight: 700;
-      color: #7d3c00;
-      background: #fef5ec;
-      border-left: 4px solid #e67e22;
-      border-radius: 0 8px 8px 0;
-      padding: 8px 16px;
-      margin: 20px 0 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    /* ✅ 已在 style.css 中定义 .scene-label，此处无需重复 */
 
     /* ── 特殊情形说明框 ── */
-    .special-box {
-      background: #fff8f0;
-      border: 1px solid #f5cba7;
-      border-left: 4px solid #e67e22;
-      border-radius: 0 8px 8px 0;
-      padding: 14px 18px;
-      font-size: 14px;
-      color: #6e3a0f;
-      line-height: 1.9;
-      margin-bottom: 16px;
-    }
-
-    .sp-title {
-      font-weight: 700;
-      color: #7d3c00;
-      margin-bottom: 8px;
-      font-size: 14px;
-    }
+    /* ✅ 已在 style.css 中定义 .special-box / .sp-title，此处无需重复 */
 
     /* ── 成功提示框 ── */
-    .success-box {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-left: 4px solid #22c55e;
-      border-radius: 0 8px 8px 0;
-      padding: 12px 16px;
-      font-size: 13px;
-      color: #14532d;
-      line-height: 1.9;
-      margin-top: 10px;
-    }
+    /* ✅ 已在 style.css 中定义 .success-box，此处无需重复 */
 
     /* ── 分隔线 ── */
-    .divider {
-      border: none;
-      border-top: 1.5px dashed #f5cba7;
-      margin: 24px 0;
-    }
+    /* ✅ 已在 style.css 中定义 .divider，此处无需重复 */
 
     /* ── step-num 文字标签版（未签协议 / 已签协议） ── */
-    .step-num-label {
-      min-width: 44px;
-      height: auto;
-      background: linear-gradient(135deg, #7d3c00 0%, #e67e22 100%);
-      border-radius: 8px;
+    /* ✅ 已在 style.css 中定义 .step-num-label，此处无需重复 */
+
+    /* ── 操作按钮标签（新增账户 / 变更 / 注销 / 签协议） ── */
+    .op-tag {
+      background: var(--gradient);
       color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-      padding: 4px 6px;
-      line-height: 1.4;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(230, 126, 34, 0.30);
-      white-space: nowrap;
+      border-radius: 5px;
+      padding: 3px 12px;
+      font-size: 13px;
     }
   </style>
 </head>
@@ -162,10 +110,10 @@
         <div class="step-content">
           <div class="step-text">进入功能界面，页面展示<strong>已采集的存款账户信息列表</strong>，可进行以下操作：</div>
           <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
-            <span style="background:#e67e22;color:#fff;border-radius:5px;padding:3px 12px;font-size:13px;">新增账户</span>
-            <span style="background:#e67e22;color:#fff;border-radius:5px;padding:3px 12px;font-size:13px;">变更</span>
-            <span style="background:#e67e22;color:#fff;border-radius:5px;padding:3px 12px;font-size:13px;">注销</span>
-            <span style="background:#e67e22;color:#fff;border-radius:5px;padding:3px 12px;font-size:13px;">签协议</span>
+            <span class="op-tag">新增账户</span>
+            <span class="op-tag">变更</span>
+            <span class="op-tag">注销</span>
+            <span class="op-tag">签协议</span>
           </div>
           <div class="step-screenshot"><img src="images/1.4/1.4-02-list.png" /></div>
         </div>
@@ -357,7 +305,7 @@
     <div class="section-title" style="margin-top:40px;"><div class="icon">六</div>本节小结</div>
     <div class="tip-box" style="background:#f0fdf4; border-left:4px solid #22c55e; padding:16px 20px;">
       ✅ <strong>本节小结：</strong>
-      <ul style="margin-top:10px; padding-left:20px; line-height:2.2; color:#1a4a72;">
+      <ul style="margin-top:10px; padding-left:20px; line-height:2.2; color:var(--text-title);">
         <li>功能路径：<strong>我要办税 → 综合信息报告 → 制度信息报告 → 存款账户账号报告</strong></li>
         <li>支持对银行账户进行<strong>新增、变更、注销</strong>，以及<strong>签订三方协议</strong></li>
         <li>已签三方协议的账户，仅可直接变更<strong>账户名称、首选缴税账户、一般退税账户标识</strong></li>

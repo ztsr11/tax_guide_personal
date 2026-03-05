@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body>
+
+<!-- ══ Lightbox 遮罩 ══ -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-close" onclick="closeLightboxDirect()">✕</div>
+  <img id="lightbox-img" src="" alt="图片预览" onclick="event.stopPropagation()" />
+  <div class="lightbox-hint">点击空白处或按 ESC 关闭</div>
+</div>
+
 <div class="page">
 
   <!-- 页头 -->
@@ -86,7 +94,10 @@
           <div class="step-text">
             登录电子税务局后，若您<strong>尚未签订</strong>《税务文书电子送达确认书》，系统将自动弹出签订提示弹窗，弹窗中已<strong>默认勾选</strong>"我已认真阅读并同意《税务文书电子确认书》"，直接点击 <strong>【同意签订】</strong> 按钮即可完成签订。
           </div>
-          <img src="images/1.2/1.2-01-popup.png" alt="登录后系统自动弹出的签订提示弹窗" class="step-img" />
+          <img src="images/1.2/1.2-01-popup.png"
+               alt="登录后系统自动弹出的签订提示弹窗"
+               class="step-img"
+               onclick="openLightbox(this)" />
           <div class="tip-box">
             💡 若暂时不想签订，可点击【暂不签订】跳过，但建议尽快完成，以便及时接收税务文书通知，避免因未收到文书而产生不必要的法律风险。
           </div>
@@ -111,7 +122,10 @@
           <div class="step-text">
             登录电子税务局后，在首页 <strong>"我的提醒"</strong> 区域，若显示《电子送达确认书协议签订》提醒条目，点击该条提醒。
           </div>
-          <img src="images/1.2/1.2-02-reminder.png" alt="首页我的提醒区域中的协议签订提醒条目" class="step-img" />
+          <img src="images/1.2/1.2-02-reminder.png"
+               alt="首页我的提醒区域中的协议签订提醒条目"
+               class="step-img"
+               onclick="openLightbox(this)" />
         </div>
       </div>
 
@@ -131,7 +145,10 @@
               无需任何操作，直接关闭页面即可。
             </div>
           </div>
-          <img src="images/1.2/1.2-03-signed.png" alt="文书送达确认书界面——已签订状态" class="step-img" />
+          <img src="images/1.2/1.2-03-signed.png"
+               alt="文书送达确认书界面——已签订状态"
+               class="step-img"
+               onclick="openLightbox(this)" />
 
           <!-- 未签订 -->
           <div style="background:#eff6ff; border:1px solid #93c5fd; border-radius:8px; padding:14px 16px; margin-top:16px;">
@@ -141,7 +158,10 @@
               <strong>【同意签订】</strong> 完成签订。
             </div>
           </div>
-          <img src="images/1.2/1.2-04-unsigned.png" alt="文书送达确认书界面——未签订状态" class="step-img" />
+          <img src="images/1.2/1.2-04-unsigned.png"
+               alt="文书送达确认书界面——未签订状态"
+               class="step-img"
+               onclick="openLightbox(this)" />
         </div>
       </div>
     </div>
@@ -173,19 +193,25 @@
           <div class="step-text">
             登录电子税务局后，点击顶部导航栏中的 <strong>【我要办税】</strong>，在展开的菜单中找到 <strong>【综合信息报告】</strong>，点击其中的 <strong>【税务文书电子送达协议签订】</strong>，进入对应功能页面。
           </div>
-          <img src="images/1.2/1.2-05-menu.png" alt="【我要办税】→【综合信息报告】→【税务文书电子送达协议签订】菜单路径" class="step-img" />
+          <img src="images/1.2/1.2-05-menu.png"
+               alt="【我要办税】→【综合信息报告】→【税务文书电子送达协议签订】菜单路径"
+               class="step-img"
+               onclick="openLightbox(this)" />
         </div>
       </div>
 
-        <div class="step-card">
+      <div class="step-card">
         <div class="step-num">2</div>
-            <div class="step-content">
-                <div class="step-text">
-                进入页面后，若您<strong>尚未签订</strong>电子送达确认书协议，系统将自动弹出 <strong>"税务文书电子送达确认书签订"</strong> 提示框，点击 <strong>【确定】</strong>，按照页面引导完成签订，签订成功后页面如下图所示。
-                </div>
-                <img src="images/1.2/1.2-06-success.png" alt="税务文书电子送达协议签订成功页面" class="step-img" />
-            </div>
+        <div class="step-content">
+          <div class="step-text">
+            进入页面后，若您<strong>尚未签订</strong>电子送达确认书协议，系统将自动弹出 <strong>"税务文书电子送达确认书签订"</strong> 提示框，点击 <strong>【确定】</strong>，按照页面引导完成签订，签订成功后页面如下图所示。
+          </div>
+          <img src="images/1.2/1.2-06-success.png"
+               alt="税务文书电子送达协议签订成功页面"
+               class="step-img"
+               onclick="openLightbox(this)" />
         </div>
+      </div>
     </div>
 
     <!-- ==================== 注意事项 ==================== -->
@@ -255,26 +281,13 @@
   <div class="footer">
     如操作过程中遇到问题，请拨打纳税服务热线 <strong>12366</strong> 获取帮助 &nbsp;|&nbsp; 本手册由税务局办税服务厅制作
     <div style="margin-top: 12px;">
-      <a href="../index.html" style="
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: #2e6da4;
-        color: #fff;
-        text-decoration: none;
-        font-size: 13px;
-        padding: 7px 20px;
-        border-radius: 20px;
-        transition: background 0.2s;
-      "
-      onmouseover="this.style.background='#1e3a5f'"
-      onmouseout="this.style.background='#2e6da4'">
-        ← 返回目录
-      </a>
+      <a href="../index.html" class="btn-footer-back">← 返回目录</a>
     </div>
   </div>
 
   </div>
 </div>
+
+<script src="../assets/lightbox.js"></script>
 </body>
 </html>

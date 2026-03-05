@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body>
+
+<!-- ══ Lightbox 遮罩 ══ -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-close" onclick="closeLightboxDirect()">✕</div>
+  <img id="lightbox-img" src="" alt="图片预览" onclick="event.stopPropagation()" />
+  <div class="lightbox-hint">点击空白处或按 ESC 关闭</div>
+</div>
+
 <div class="page">
 
   <!-- 页头 -->
@@ -85,14 +93,14 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-text">进入本省电子税务局官网（以广西为例），在首页找到 <strong>【电子税务局】</strong> 或 <strong>【我要办税】</strong> 入口，点击进入。</div>
-          <img src="images/etax/etax-01-gx-homepage-entry.png" alt="广西税务局官网首页，电子税务局/我要办税入口" class="step-img" />
+          <img src="images/etax/etax-01-gx-homepage-entry.png" alt="广西税务局官网首页，电子税务局/我要办税入口" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
         <div class="step-content">
           <div class="step-text">进入电子税务局后，点击页面<strong>右上角【登录】</strong>按钮，进入登录页面。</div>
-          <img src="images/etax/etax-02-login-btn.png" alt="电子税务局首页右上角登录按钮" class="step-img" />
+          <img src="images/etax/etax-02-login-btn.png" alt="电子税务局首页右上角登录按钮" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
       <div class="step-card">
@@ -100,7 +108,7 @@
         <div class="step-content">
           <div class="step-text">在登录页面中点击 <strong>【自然人业务】→【用户注册】</strong>，按照页面提示依次填写<strong>姓名、身份证号码、手机号码</strong>等信息，完成实名认证后设置登录密码即注册成功。</div>
           <div class="tip-box">💡 也可在手机<strong>电子税务局 APP</strong> 上完成注册操作，路径为【我的-立即登录-用户注册】，按提示填写。</div>
-          <img src="images/etax/etax-03-register-entry.png" alt="登录页面自然人业务/用户注册入口" class="step-img" />
+          <img src="images/etax/etax-03-register-entry.png" alt="登录页面自然人业务/用户注册入口" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
     </div>
@@ -162,14 +170,14 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-text">以<strong>自然人身份</strong>登录后，点击页面右上角的<strong>头像图标</strong>，在下拉菜单中选择 <strong>【账户中心】</strong>。</div>
-          <img src="images/etax/etax-04-avatar-account-center.png" alt="右上角头像及账户中心入口" class="step-img" />
+          <img src="images/etax/etax-04-avatar-account-center.png" alt="右上角头像及账户中心入口" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
         <div class="step-content">
           <div class="step-text">进入账户中心后，点击 <strong>【身份切换】</strong>，系统展示该账号关联的所有企业列表，点击目标企业名称右侧的【切换】，即可切换至该企业的办税界面，<strong>无需重新输入密码</strong>。</div>
-          <img src="images/etax/etax-05-identity-switch.png" alt="账户中心身份切换功能入口" class="step-img" />
+          <img src="images/etax/etax-05-identity-switch.png" alt="账户中心身份切换功能入口" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
     </div>
@@ -185,7 +193,7 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-text">在登录页面点击 <strong>【忘记密码】</strong>，选择通过<strong>手机号验证</strong>方式重置。</div>
-          <img src="images/etax/etax-06-forgot-password.png" alt="登录页忘记密码链接位置" class="step-img" />
+          <img src="images/etax/etax-06-forgot-password.png" alt="登录页忘记密码链接位置" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
       <div class="step-card">
@@ -233,14 +241,14 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-text">建议使用<strong>个人所得税 APP</strong> 完成注册，打开 APP 后依次点击 <strong>【我的】→【注册/登录】→【注册】→【人脸识别认证注册】</strong>。</div>
-          <img src="images/its/its-01-register-entry.png" alt="个人所得税APP注册入口" class="step-img" />
+          <img src="images/its/its-01-register-entry.png" alt="个人所得税APP注册入口" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
         <div class="step-content">
           <div class="step-text">填写<strong>证件号码和姓名</strong>，拖动滑块完成验证后，按提示进行<strong>人脸识别</strong>，系统与公安数据库比对通过即完成实名认证。</div>
-          <img src="images/its/its-02-id-face-verify.png" alt="填写证件信息及人脸识别页面" class="step-img" />
+          <img src="images/its/its-02-id-face-verify.png" alt="填写证件信息及人脸识别页面" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
       <div class="step-card">
@@ -328,31 +336,31 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-text">前往自然人电子税务局官网，下载对应操作系统的扣缴端安装包（Windows版），按提示完成安装。</div>
-          <img src="images/wh/wh-01-download-entry.png" alt="官网下载页面，扣缴客户端下载入口" class="step-img" />
-          <img src="images/wh/wh-02-download-btn.png" alt="官网下载页面，点击下载按钮" class="step-img" />
+          <img src="images/wh/wh-01-download-entry.png" alt="官网下载页面，扣缴客户端下载入口" class="step-img" onclick="openLightbox(this)" />
+          <img src="images/wh/wh-02-download-btn.png" alt="官网下载页面，点击下载按钮" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
         <div class="step-content">
           <div class="step-text">首次打开软件，在初始化界面依次输入<strong>企业税号</strong>及<strong>办税人信息</strong>，点击 <strong>【立即体验】</strong> 完成初始化。</div>
-          <img src="images/wh/wh-03-init-taxid.png" alt="扣缴端初始化页面——输入企业税号" class="step-img" />
-          <img src="images/wh/wh-04-init-operator.png" alt="扣缴端初始化页面——输入办税人信息" class="step-img" />
-          <img src="images/wh/wh-05-init-start.png" alt="扣缴端初始化页面——立即体验按钮" class="step-img" />
+          <img src="images/wh/wh-03-init-taxid.png" alt="扣缴端初始化页面——输入企业税号" class="step-img" onclick="openLightbox(this)" />
+          <img src="images/wh/wh-04-init-operator.png" alt="扣缴端初始化页面——输入办税人信息" class="step-img" onclick="openLightbox(this)" />
+          <img src="images/wh/wh-05-init-start.png" alt="扣缴端初始化页面——立即体验按钮" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
       <div class="step-card">
         <div class="step-num">3</div>
         <div class="step-content">
           <div class="step-text">初始化完成后进入登录界面，可选择以下任意方式登录：<strong>实名登录</strong>、<strong>申报密码登录</strong> 或 <strong>个人所得税 APP 扫码登录</strong>。</div>
-          <img src="images/wh/wh-06-login-methods.png" alt="扣缴端登录界面，三种登录方式" class="step-img" />
+          <img src="images/wh/wh-06-login-methods.png" alt="扣缴端登录界面，三种登录方式" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
       <div class="step-card">
         <div class="step-num">4</div>
         <div class="step-content">
           <div class="step-text">进入软件后，可点击页面<strong>右上角</strong>下载<strong>操作手册</strong>，便于查阅各功能使用说明。</div>
-          <img src="images/wh/wh-07-manual-download.png" alt="软件右上角操作手册下载入口" class="step-img" />
+          <img src="images/wh/wh-07-manual-download.png" alt="软件右上角操作手册下载入口" class="step-img" onclick="openLightbox(this)" />
         </div>
       </div>
     </div>
@@ -471,30 +479,16 @@
       </ul>
     </div>
 
-  <div class="footer">
-    如操作过程中遇到问题，请拨打纳税服务热线 <strong>12366</strong> 获取帮助 &nbsp;|&nbsp; 本手册由税务局办税服务厅制作
-    <div style="margin-top: 12px;">
-      <a href="../index.html" style="
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: #2e6da4;
-        color: #fff;
-        text-decoration: none;
-        font-size: 13px;
-        padding: 7px 20px;
-        border-radius: 20px;
-        transition: background 0.2s;
-      "
-      onmouseover="this.style.background='#1e3a5f'"
-      onmouseout="this.style.background='#2e6da4'">
-        ← 返回目录
-      </a>
+    <div class="footer">
+      如操作过程中遇到问题，请拨打纳税服务热线 <strong>12366</strong> 获取帮助 &nbsp;|&nbsp; 本手册由税务局办税服务厅制作
+      <div style="margin-top: 12px;">
+        <a href="../index.html" class="btn-footer-back">← 返回目录</a>
+      </div>
     </div>
-  </div>
-
 
   </div>
 </div>
+
+<script src="../assets/lightbox.js"></script>
 </body>
 </html>

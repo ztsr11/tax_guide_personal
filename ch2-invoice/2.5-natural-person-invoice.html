@@ -18,12 +18,24 @@
       font-size: 13px;
       color: var(--text-title);
       font-weight: 600;
-      cursor: default;
+      cursor: pointer;                        /* ← 改为可点击 */
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.18s;
+    }
+    .type-tab:hover {
+      background: var(--primary-light);       /* ← hover 变色 */
+      color: #fff;
+      border-color: transparent;
+      box-shadow: var(--shadow-sm);
     }
     .type-tab.active {
       background: var(--gradient);
       color: #fff;
       border-color: transparent;
+    }
+    .type-tab.active:hover {
+      box-shadow: var(--shadow-sm);
     }
 
     /* ── 本页专属：子步骤序号圆圈 ── */
@@ -128,10 +140,100 @@
       font-size: 12px;
       font-family: "Courier New", monospace;
     }
+
+    /* ── 章节锚点定位偏移（防止被固定导航遮挡） ── */
+    .anchor-target {
+      scroll-margin-top: 20px;
+    }
+
+    /* ════════════════════════════════════════
+       图片放大预览 Lightbox
+    ════════════════════════════════════════ */
+    /* 截图区域：鼠标移上去提示可点击 */
+    .step-screenshot img {
+      cursor: zoom-in;
+      transition: box-shadow 0.2s, transform 0.2s;
+      border-radius: 6px;
+    }
+    .step-screenshot img:hover {
+      box-shadow: 0 4px 20px rgba(74, 108, 247, 0.28);
+      transform: scale(1.01);
+    }
+
+    /* 遮罩层 */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 20, 60, 0.82);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    .lightbox-overlay.active {
+      display: flex;
+    }
+
+    /* 放大图片 */
+    .lightbox-overlay img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 10px;
+      box-shadow: 0 8px 48px rgba(0, 0, 0, 0.55);
+      cursor: default;
+      object-fit: contain;
+      animation: lb-in 0.18s ease;
+    }
+    @keyframes lb-in {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* 关闭按钮 */
+    .lightbox-close {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 20px;
+      line-height: 34px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.15s;
+      user-select: none;
+      z-index: 10000;
+    }
+    .lightbox-close:hover {
+      background: rgba(255,255,255,0.30);
+    }
+
+    /* 提示文字 */
+    .lightbox-hint {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
 <div class="page">
+
+  <!-- ══ Lightbox 遮罩（全局唯一） ══ -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-close" onclick="closeLightboxDirect()">✕</div>
+    <img id="lightbox-img" src="" alt="图片预览" onclick="event.stopPropagation()" />
+    <div class="lightbox-hint">点击空白处或按 ESC 关闭</div>
+  </div>
 
   <!-- ══ 页头 ══ -->
   <div class="header">
@@ -195,7 +297,7 @@
         <div class="step-content">
           <div class="step-text">登录电子税务局，点击 <strong>【我要办税】→【发票业务】→【代开增值税发票】</strong></div>
           <div class="step-screenshot">
-            <img src="images/2.5/2.5-01-menu.png" />
+            <img src="images/2.5/2.5-01-menu.png" onclick="openLightbox(this)" />
           </div>
         </div>
       </div>
@@ -204,19 +306,22 @@
       <div class="step-card">
         <div class="step-num">2</div>
         <div class="step-content">
-          <div class="step-text">进入代开页面后，根据实际业务选择对应的<strong>代开类型</strong>：</div>
+          <div class="step-text">进入代开页面后，根据实际业务选择对应的<strong>代开类型</strong>（点击下方标签可直接跳转）：</div>
+
+          <!-- ✅ 四个标签改为锚点链接 -->
           <div class="type-tabs">
-            <span class="type-tab active">货物 / 一般服务</span>
-            <span class="type-tab">出租不动产</span>
-            <span class="type-tab">建筑服务</span>
-            <span class="type-tab">货物运输服务</span>
+            <a href="#section-general"   class="type-tab">货物 / 一般服务</a>
+            <a href="#section-realestate" class="type-tab">出租不动产</a>
+            <a href="#section-construct"  class="type-tab">建筑服务</a>
+            <a href="#section-transport"  class="type-tab">货物运输服务</a>
           </div>
+
           <div class="step-screenshot">
-            <img src="images/2.5/2.5-02-type-select.png" />
+            <img src="images/2.5/2.5-02-type-select.png" onclick="openLightbox(this)" />
           </div>
 
           <!-- （一）货物 / 一般服务 -->
-          <div class="sub-step">
+          <div class="sub-step anchor-target" id="section-general">
             <div class="sub-step-title">（一）货物、服务等一般代开</div>
             <div class="steps">
 
@@ -232,11 +337,11 @@
                 <div class="step-content">
                   <div class="step-text">填写发票信息：可点击右上角 <strong>【切换至表单视图】</strong> 切换填写方式；录入购买方信息、项目名称、备注等，点击 <strong>【下一步】</strong></div>
                   <div class="step-screenshot">
-                    <img src="images/2.5/2.5-03-invoice-form.png" />
+                    <img src="images/2.5/2.5-03-invoice-form.png" onclick="openLightbox(this)" />
                   </div>
 
                   <div class="sub-step" style="margin-top:10px;">
-                    <div class="sub-step-title">📌 如何确定「项目名称」？</div>
+                    <div class="sub-step-title">步骤②中 如何确定「项目名称」？</div>
                     <div class="step-text">项目名称须<strong>准确反映交易内容</strong>，并与税收分类编码匹配。格式为：<strong>*税收分类简称*具体名称</strong>，例如：<code>*设计服务*LOGO设计</code>、<code>*软件开发服务*软件开发</code></div>
 
                     <div class="tip-box" style="margin-top:8px;">
@@ -281,7 +386,7 @@
                 <div class="step-content">
                   <div class="step-text"><strong>纳税信息确认</strong>：系统自动加载应纳税款及本月可用税款信息；可自行录入时间后点击 <strong>【查询】</strong>，确认无误后点击 <strong>【提交申请】</strong></div>
                   <div class="step-screenshot">
-                    <img src="images/2.5/2.5-04-tax-confirm.png" />
+                    <img src="images/2.5/2.5-04-tax-confirm.png" onclick="openLightbox(this)" />
                   </div>
                 </div>
               </div>
@@ -290,7 +395,7 @@
           </div>
 
           <!-- （二）出租不动产 -->
-          <div class="sub-step">
+          <div class="sub-step anchor-target" id="section-realestate">
             <div class="sub-step-title">（二）出租不动产</div>
             <div class="steps">
 
@@ -306,7 +411,7 @@
                 <div class="step-content">
                   <div class="step-text">填写<strong>不动产和合同信息</strong>：选择代开申请人类型、不动产单元号、坐落地址、不动产权证、用途、面积、租赁合同金额、合同租赁期等，并上传相关资料，点击 <strong>【下一步】</strong></div>
                   <div class="step-screenshot">
-                    <img src="images/2.5/2.5-05-realestate-form.png" />
+                    <img src="images/2.5/2.5-05-realestate-form.png" onclick="openLightbox(this)" />
                   </div>
                 </div>
               </div>
@@ -316,7 +421,7 @@
                 <div class="step-content">
                   <div class="step-text">填写<strong>发票信息</strong>：录入购买方信息、实际租赁时间起止等，点击 <strong>【下一步】</strong></div>
                   <div class="step-screenshot">
-                    <img src="images/2.5/2.5-06-realestate-invoice.png" />
+                    <img src="images/2.5/2.5-06-realestate-invoice.png" onclick="openLightbox(this)" />
                   </div>
                 </div>
               </div>
@@ -326,7 +431,7 @@
                 <div class="step-content">
                   <div class="step-text"><strong>纳税信息确认</strong>：确认应纳税款及可用税款信息，点击 <strong>【提交申请】</strong></div>
                   <div class="step-screenshot">
-                    <img src="images/2.5/2.5-07-realestate-tax.png" />
+                    <img src="images/2.5/2.5-07-realestate-tax.png" onclick="openLightbox(this)" />
                   </div>
                 </div>
               </div>
@@ -334,8 +439,8 @@
             </div>
           </div>
 
-          <!-- （三）建筑服务 / 货物运输服务 -->
-          <div class="sub-step">
+          <!-- （三）建筑服务 -->
+          <div class="sub-step anchor-target" id="section-construct">
             <div class="sub-step-title">（三）建筑服务 / 货物运输服务</div>
             <div class="step-text" style="margin-bottom:10px;">以上两类操作流程相似，步骤如下：</div>
             <div class="steps">
@@ -350,15 +455,16 @@
               <div class="step-card">
                 <div class="sub-num">②</div>
                 <div class="step-content">
-                  <div class="step-text"><strong>建筑服务</strong>：录入购买方信息、建筑项目名称、建筑服务发生地县（市、区）等数据</div>
+                  <div class="step-text"><strong>建筑服务</strong>：录入购买方信息、建筑项目类别、名称、建筑服务发生地县（市、区）等数据</div>
                   <div class="tip-box">💡 建筑服务发票备注栏须注明建筑服务发生地县（市、区）名称及项目名称</div>
                 </div>
               </div>
 
-              <div class="step-card">
+              <!-- （四）货物运输服务 锚点放在此处 -->
+              <div class="step-card anchor-target" id="section-transport">
                 <div class="sub-num">②</div>
                 <div class="step-content">
-                  <div class="step-text"><strong>货物运输服务</strong>：录入购买方信息、运输货物信息、起运地、到达地等数据；填写的运输工具信息应与备案信息一致</div>
+                  <div class="step-text"><strong>货物运输服务</strong>：录入购买方信息、运输项目信息、起运地、到达地等数据；填写的运输工具信息应与备案信息一致</div>
                   <div class="tip-box">💡 具备运输资格并已纳入税收管理的小规模纳税人，备案后可在税务登记地、货物起运地、到达地或承揽地就近申请代开</div>
                 </div>
               </div>
@@ -416,7 +522,7 @@
                 <div class="step-content">
                   <div class="step-text">点击 <strong>【发票预览】</strong>，进入预览页面</div>
                   <div class="step-screenshot">
-                    <img src="images/2.5/2.5-08-download-preview.png" />
+                    <img src="images/2.5/2.5-08-download-preview.png" onclick="openLightbox(this)" />
                   </div>
                 </div>
               </div>
@@ -425,7 +531,7 @@
                 <div class="step-content">
                   <div class="step-text">选择下载方式：<strong>二维码下载 / PDF / OFD / XML</strong></div>
                   <div class="step-screenshot">
-                    <img src="images/2.5/2.5-09-download-direct.png" />
+                    <img src="images/2.5/2.5-09-download-direct.png" onclick="openLightbox(this)" />
                   </div>
                 </div>
               </div>
@@ -446,7 +552,7 @@
                 <div class="step-content">
                   <div class="step-text">找到目标发票，点击 <strong>【下载】</strong> 进入预览界面</div>
                   <div class="step-screenshot">
-                    <img src="images/2.5/2.5-10-download-query.png" />
+                    <img src="images/2.5/2.5-10-download-query.png" onclick="openLightbox(this)" />
                   </div>
                 </div>
               </div>
@@ -561,5 +667,37 @@
   </div>
 
 </div>
+
+<!-- ══ Lightbox JS ══ -->
+<script>
+  // 打开放大预览
+  function openLightbox(imgEl) {
+    const lb  = document.getElementById('lightbox');
+    const lbi = document.getElementById('lightbox-img');
+    lbi.src = imgEl.src;
+    lbi.alt = imgEl.alt || '图片预览';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';   // 禁止背景滚动
+  }
+
+  // 点击遮罩关闭
+  function closeLightbox(e) {
+    if (e.target === document.getElementById('lightbox')) {
+      closeLightboxDirect();
+    }
+  }
+
+  // 直接关闭
+  function closeLightboxDirect() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // ESC 键关闭
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightboxDirect();
+  });
+</script>
+
 </body>
 </html>

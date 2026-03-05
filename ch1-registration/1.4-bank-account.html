@@ -7,22 +7,6 @@
   <link rel="stylesheet" href="../assets/style.css" />
 
   <style>
-    /* ── 场景标签（新增 / 变更 / 注销 / 签协议） ── */
-    /* ✅ 已在 style.css 中定义 .scene-label，此处无需重复 */
-
-    /* ── 特殊情形说明框 ── */
-    /* ✅ 已在 style.css 中定义 .special-box / .sp-title，此处无需重复 */
-
-    /* ── 成功提示框 ── */
-    /* ✅ 已在 style.css 中定义 .success-box，此处无需重复 */
-
-    /* ── 分隔线 ── */
-    /* ✅ 已在 style.css 中定义 .divider，此处无需重复 */
-
-    /* ── step-num 文字标签版（未签协议 / 已签协议） ── */
-    /* ✅ 已在 style.css 中定义 .step-num-label，此处无需重复 */
-
-    /* ── 操作按钮标签（新增账户 / 变更 / 注销 / 签协议） ── */
     .op-tag {
       background: var(--gradient);
       color: #fff;
@@ -33,6 +17,14 @@
   </style>
 </head>
 <body>
+
+<!-- ══ Lightbox 遮罩 ══ -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-close" onclick="closeLightboxDirect()">✕</div>
+  <img id="lightbox-img" src="" alt="图片预览" onclick="event.stopPropagation()" />
+  <div class="lightbox-hint">点击空白处或按 ESC 关闭</div>
+</div>
+
 <div class="page">
 
   <!-- ===== 页头 ===== -->
@@ -101,7 +93,9 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-text">登录电子税务局，按路径进入 <strong>【存款账户账号报告】</strong> 功能</div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-01-menu.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-01-menu.png" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
 
@@ -115,7 +109,9 @@
             <span class="op-tag">注销</span>
             <span class="op-tag">签协议</span>
           </div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-02-list.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-02-list.png" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
     </div>
@@ -127,7 +123,9 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-text">点击 <strong>【新增账户】</strong>，跳转至新增账户填写界面</div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-03-add-btn.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-03-add-btn.png" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
 
@@ -135,7 +133,9 @@
         <div class="step-num">2</div>
         <div class="step-content">
           <div class="step-text">填写银行账户信息。<strong>开户银行</strong>栏可输入关键字搜索，填写完毕后点击 <strong>【提交】</strong></div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-04-add-form.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-04-add-form.png" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
 
@@ -143,7 +143,9 @@
         <div class="step-num">3</div>
         <div class="step-content">
           <div class="step-text">弹出确认框，展示所填写的<strong>开户银行和账号信息</strong>，核对无误后点击 <strong>【确认】</strong></div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-05-add-confirm.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-05-add-confirm.png" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
 
@@ -158,7 +160,9 @@
             &nbsp;&nbsp;• 点击 <strong>【继续办理】</strong> → 返回功能界面继续操作<br>
             &nbsp;&nbsp;• 点击 <strong>【返回首页】</strong> → 返回系统首页
           </div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-06-add-success.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-06-add-success.png" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
     </div>
@@ -180,7 +184,9 @@
         <div class="step-num-label">未签<br>协议</div>
         <div class="step-content">
           <div class="step-text">点击对应账户的 <strong>【变更】</strong>，进入变更页面，修改信息后点击 <strong>【提交】</strong></div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-07-edit-normal.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-07-edit-normal.png" onclick="openLightbox(this)" />
+          </div>
           <div class="success-box">
             ✅ 提交成功后，可下载报告表、跳转签订三方协议或返回继续办理（同新增成功页面操作）
           </div>
@@ -196,7 +202,9 @@
             &nbsp;&nbsp;• 如需变更受限字段 → 点击 <strong>【终止三方协议】</strong> 后再操作<br>
             &nbsp;&nbsp;• 如只变更<strong>账户名称、首选缴税账户、一般退税账户标识</strong> → 可直接修改并提交，无需终止协议
           </div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-08-edit-triparty.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-08-edit-triparty.png" onclick="openLightbox(this)" />
+          </div>
           <div class="success-box">
             ✅ 提交成功后，操作同上（下载表单 / 签订协议 / 返回）
           </div>
@@ -214,14 +222,18 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-text">在账户列表中，点击需注销账户的 <strong>【注销】</strong> 按钮</div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-09-cancel-btn.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-09-cancel-btn.png" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
         <div class="step-content">
-          <div class="step-text">弹出输入框，填写<strong>注销日期</strong>，点击 <strong>【确定】</strong></div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-10-cancel-date.png" /></div>
+          <div class="step-text">弹出输入框，点击 <strong>【确定】</strong></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-10-cancel-date.png" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
       <div class="step-card">
@@ -234,7 +246,9 @@
             &nbsp;&nbsp;• 点击 <strong>【返回】</strong> → 返回系统首页<br><br>
             💡 <strong>注意：</strong>无论该账户是否已签订三方协议，注销时系统均会<strong>自动同步终止</strong>对应协议，无需手动操作。
           </div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-11-cancel-success.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-11-cancel-success.png" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
     </div>
@@ -248,7 +262,9 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-text">在账户列表中，点击对应账户的 <strong>【签协议】</strong>，系统跳转至<strong>银税三方（委托）划缴协议</strong>签订界面，按页面提示完成签订操作</div>
-          <div class="step-screenshot"><img src="images/1.4/1.4-12-triparty.png" /></div>
+          <div class="step-screenshot">
+            <img src="images/1.4/1.4-12-triparty.png" onclick="openLightbox(this)" />
+          </div>
           <div class="tip-box">💡 三方协议签订后，税务机关可在您应缴税款时直接从该账户扣划，无需每次手动缴款，操作更便捷。</div>
         </div>
       </div>
@@ -326,5 +342,7 @@
   </div>
 
 </div>
+
+<script src="../assets/lightbox.js"></script>
 </body>
 </html>

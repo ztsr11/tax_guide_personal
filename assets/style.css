@@ -611,3 +611,81 @@ body {
     max-width: 100% !important;
   }
 }
+
+/* ============================================
+   Lightbox · 图片点击放大预览
+   ============================================ */
+
+/* 截图图片：hover 提示可点击 */
+.step-screenshot img,
+.step-img {
+  cursor: zoom-in;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.step-screenshot img:hover,
+.step-img:hover {
+  box-shadow: 0 4px 20px rgba(33, 118, 199, 0.30);
+  transform: scale(1.01);
+}
+
+/* 遮罩层 */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 50, 0.84);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: zoom-out;
+}
+.lightbox-overlay.active { display: flex; }
+
+/* 放大图片 */
+.lightbox-overlay img {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 10px;
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.55);
+  cursor: default;
+  object-fit: contain;
+  animation: lb-in 0.18s ease;
+}
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* 关闭按钮 */
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  line-height: 34px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+  z-index: 10000;
+}
+.lightbox-close:hover { background: rgba(255, 255, 255, 0.30); }
+
+/* 底部提示 */
+.lightbox-hint {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.50);
+  font-size: 12px;
+  pointer-events: none;
+  white-space: nowrap;
+}
